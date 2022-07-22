@@ -3,13 +3,15 @@
 
 class Node:
     """A node with value and reference of the next node.."""
+
     def __init__(self, value):
         self.value = value
-        self.next = None
+        self.adjacent = None
 
 
 class CSinglyLinkedList:
     """A class represents linked list with head and tail.."""
+
     def __init__(self):
         self.head = None
         self.tail = None
@@ -28,7 +30,7 @@ class CSinglyLinkedList:
             return "The linked list already exist.."
         else:
             node = Node(value)
-            node.next = node
+            node.adjacent = node
             self.head = self.tail = node
 
     def insertNode(self, value, location):
@@ -41,13 +43,13 @@ class CSinglyLinkedList:
         else:
             # At the beginning of the linked list
             if location == 0:
-                self.tail.next = newNode
-                newNode.next = self.head
+                self.tail.adjacent = newNode
+                newNode.adjacent = self.head
                 self.head = newNode
 
             # At the end of the linked list
             elif location == -1:
-                newNode.next = self.head
+                newNode.adjacent = self.head
                 self.tail.next = newNode
                 self.tail = newNode
 
@@ -56,11 +58,11 @@ class CSinglyLinkedList:
                 node = self.head
                 index = 0
                 while index < location - 1:
-                    node = node.next
+                    node = node.adjacent
                     index += 1
-                nextNode = node.next
-                node.next = newNode
-                newNode.next = nextNode
+                nextNode = node.adjacent
+                node.adjacent = newNode
+                newNode.adjacent = nextNode
 
     def traverse(self):
         """Traverse the linked list and prints out each node value.."""
@@ -98,6 +100,6 @@ csll.insertNode(50, -1)
 csll.insertNode(30, 0)
 csll.insertNode(40, 1)
 
-# 30, 40, 10, 20
+# 30, 40, 10, 20, 50
 for value in csll:
-    print(value.value, end= ' ')
+    print(value.value, end=' ')
