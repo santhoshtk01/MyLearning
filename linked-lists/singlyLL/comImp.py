@@ -71,7 +71,7 @@ class SinglyLinkedList:
         else:
             node = self.head
             while node.next is not None:
-                print(node.value, end=" ")
+                print(node.value, end=" -> ")
                 node = node.next
             # Process the last node
             print(node.value)
@@ -125,33 +125,72 @@ class SinglyLinkedList:
             self.head = None
             self.tail = None
 
+    def detectLoop(self):
+        slowPointer = self.head
+        fastPointer = self.head
+        f = False
 
-# Code to check my function
-ll = SinglyLinkedList()
+        flag = slowPointer and fastPointer
 
-# Expected : 900 -> 30 -> 20 -> 10 -> 1000 -> 200 [😀]
-ll.insertNode(10, -1)
-ll.insertNode(20, 0)
-ll.insertNode(1000, -1)
-ll.insertNode(900, 0)
-ll.insertNode(200, -1)
-ll.insertNode(30, 1)
+        while flag and fastPointer.next.next:
+            if slowPointer == fastPointer and f:
+                return "Loop detected"
 
-# Traversal [😀]
-ll.traverse()
+            # Updating the pointer
+            slowPointer = slowPointer.next
+            fastPointer = fastPointer.next.next
+            f = True
 
-# Searching [😀]
-print(ll.searchNode(1000))
-print(ll.searchNode(30))
-print(ll.searchNode(20))
-# print(ll.searchNode(200))
+        return "There is no loop in the linked list.."
 
-# Deletion of node - 30 20 1000 [😀]
-ll.deleteNode(3)
-ll.deleteNode(0)
-ll.deleteNode(-1)
-ll.traverse()
+    def swapNode(self):
+        currentNode = self.head.next
+        prevNode = self.head
 
-# Deletion of entire linked list [😀]
-ll.deleteEntireList()
-print(ll.traverse())
+        while currentNode.next and prevNode.next:
+            currentNode.next = prevNode
+            prevNode.next = currentNode.next.next
+
+            if prevNode == self.head:
+                self.head = currentNode
+
+            # Updating the references.
+            currentNode = currentNode.next
+            prevNode = prevNode.next
+            break
+
+
+# # Code to check my function
+# ll = SinglyLinkedList()
+#
+# # Expected : 900 -> 30 -> 20 -> 10 -> 1000 -> 200 [😀]
+# ll.insertNode(10, -1)
+# ll.insertNode(20, 0)
+# ll.insertNode(1000, -1)
+# ll.insertNode(900, 0)
+# ll.insertNode(200, -1)
+# ll.insertNode(30, 1)
+#
+# # # Traversal [😀]
+# ll.traverse()
+# ll.swapNode()
+# ll.traverse()
+# # ll.tail.next = ll.head
+
+
+
+# # Searching [😀]
+# print(ll.searchNode(1000))
+# print(ll.searchNode(30))
+# print(ll.searchNode(20))
+# # print(ll.searchNode(200))
+#
+# # Deletion of node - 30 20 1000 [😀]
+# ll.deleteNode(3)
+# ll.deleteNode(0)
+# ll.deleteNode(-1)
+# ll.traverse()
+#
+# # Deletion of entire linked list [😀]
+# ll.deleteEntireList()
+# print(ll.traverse())
