@@ -24,7 +24,7 @@ class DynamicStack:
 
         """
         self.stack.append(value)
-        print("Value {0} inserted successfully.".format(value))
+        # print("Value {0} inserted successfully.".format(value))
 
     def pop(self) -> int:
         """Return the recently added element form the `stack` and delete it. """

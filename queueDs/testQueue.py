@@ -1,32 +1,23 @@
 from queueDs.dynamicQueue import DynamicQueue
 from queueDs.circularQueue import CircularQueue
+from queueDs.queueLL import Queue
 
 # queue = DynamicQueue()
 queue = CircularQueue(5)
+# queue = Queue()
+
 queue.enQueue(10)
 queue.enQueue(20)
-
 queue.enQueue(30)
 queue.enQueue(40)
-print(queue)
-print(queue.deQueue())
-print(queue.deQueue())
 queue.enQueue(50)
-queue.enQueue(60)
-queue.enQueue(70)
-queue.enQueue(80)
 
 print(queue)
-print(queue.deQueue())
-print(queue.deQueue())
-queue.enQueue(100)
-queue.enQueue(1000)
-print(queue.isFull())
-print(queue)
-print(queue.peek())
-print(queue.deQueue())
-print(queue.deQueue())
-print(queue)
-print("Destructing the queue..")
-queue.destructCircularQueue()
+
+while True:
+    if queue.deQueue():
+        continue
+    else:
+        break
+
 print(queue)

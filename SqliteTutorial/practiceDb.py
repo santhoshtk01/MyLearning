@@ -1,19 +1,23 @@
-from mysql import connector
+import mysql.connector
+from mysql.connector import errorcode
 
-dataBase = connector.connect(
-    user="root",
-    password="Mysql0011@",
-    host="127.0.0.1",
-    database="college",
-    # auth_plugin='mysql_native_password',
-)
+configuration = {
+    'user': 'root',
+    'password': 'Mysql0011@',
+    'host': '127.0.0.1',
+    'database': 'MyEmployees'
+}
 
-cursor = dataBase.cursor()
-cursor.execute('DESC student;')
+# Establishing a new connection with MySql server
+try:
+    connection = mysql.connector.connect(**configuration)
+    print("Database connection successful.")
+except mysql.connector.Error as error:
+    if error.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+        print("Something wrong with your user name and password.")
+    elif error.errno == errorcode.ER_BAD_DB_ERROR:
+        print("Database does not exist.")
+    else:
+        print(error)
 
-for value in cursor.fetchall():
-    print(value)
-
-
-cursor.close()
-dataBase.close()
+connection.close()

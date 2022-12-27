@@ -1,7 +1,6 @@
 # Program to implement queue using Python's list dynamically.
 __test__ = True
 
-
 class DynamicQueue:
     """
     Class to create a dynamic queue using Python's list.

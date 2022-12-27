@@ -15,6 +15,7 @@ class StaticStack:
         """Creates a new static stack."""
         self.stack = []
         self.size = size
+        print("Stack called..")
 
     def __str__(self):
         return str(self.stack[::-1])

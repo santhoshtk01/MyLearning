@@ -16,13 +16,13 @@ class CircularQueue:
         self.size = size
         self.front = -1
         self.rear = -1
+        print("Queue called..")
 
     def __str__(self):
         return str(self.queue)
 
-    def destructCircularQueue(self):
-        # TODO : Test this.
-        del self
+    def __del__(self):
+        pass
 
     def enQueue(self, value: int) -> None:
         """
@@ -71,7 +71,7 @@ class CircularQueue:
 
     def isEmpty(self) -> bool:
         """Return 'True' if the queue is Empty. Otherwise, return 'False'."""
-        if self.front == self.rear:
+        if self.front + 1 == self.rear:
             return True
         else:
             return False
@@ -79,3 +79,7 @@ class CircularQueue:
     def deleteCircularQueue(self) -> None:
         """Delete the entire circular queue."""
         self.queue = [None] * self.size
+
+
+
+
